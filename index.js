@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const { createGetPollController,createPostPollController } = require("./controller/PollController");
+const { createGetPollController,createPostPollController,allPollsController } = require("./controller/PollController");
 require("dotenv").config();
 // middleware
 app.set("view engine", "ejs");
@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 app.get('/create',createGetPollController);
+app.get('/polls',allPollsController)
 app.post('/create',createPostPollController)
 
 

@@ -15,7 +15,13 @@
             <div class="col-md-6 offset-md-3 my-3">
                 <div class="card">
                     <div class="card-body">
-                        
+                        <div class="list-group ">
+                            <%for(let poll of polls){%>
+                                <p class="list-group-item my-1">
+                                    <a href="/polls/<%= poll._id%>"><%= poll.title %></a>
+                                </p>
+                            <%}%>
+                        </div>
                     </div>
                 </div>
             </div>

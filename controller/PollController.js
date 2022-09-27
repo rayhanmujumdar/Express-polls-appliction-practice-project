@@ -2,7 +2,7 @@ const Poll = require("../Model/Poll");
 exports.createGetPollController = (req, res) => {
   res.render("create");
 };
-exports.createPostPollController = async(req, res) => {
+exports.createPostPollController = async (req, res) => {
   let { title, description, options } = req.body;
   options = options.map((op) => {
     return {
@@ -15,14 +15,19 @@ exports.createPostPollController = async(req, res) => {
     description,
     options,
   });
-  try{
-    await poll.save()
-    res.redirect('/polls')
-  }catch (e){
-    console.log(e)
+  try {
+    await poll.save();
+    res.redirect("/polls");
+  } catch (e) {
+    console.log(e);
   }
 };
 
-exports.allPollsController = (req,res) => {
-    
-}
+exports.allPollsController = async (req, res) => {
+  try {
+    const polls = await Poll.find()
+    res.render("polls", { polls });
+  } catch (e) {
+    console.log(e)
+  }
+};
