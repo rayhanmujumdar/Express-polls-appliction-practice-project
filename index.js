@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const { createController } = require("./controller/PollController");
+const { createGetPollController,createPostPollController } = require("./controller/PollController");
 require("dotenv").config();
 // middleware
 app.set("view engine", "ejs");
@@ -17,11 +17,12 @@ const port = process.env.PORT || 8000;
 app.get("/", (req, res) => {
   res.render("home");
 });
-app.get('/create',createController)
+app.get('/create',createGetPollController);
+app.post('/create',createPostPollController)
 
 
 // Database connection
-const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fp7ypgo.mongodb.net/express-cc`;
+const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fp7ypgo.mongodb.net/express-cc-2`;
 mongoose
   .connect(dbUrl)
   .then(() => {
