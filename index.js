@@ -7,7 +7,8 @@ const {
   createGetPollController,
   createPostPollController,
   allPollsController,
-  getPollResultController
+  viewPollGetController,
+  viewPollPostController
 } = require("./controller/PollController");
 require("dotenv").config();
 // middleware
@@ -25,7 +26,8 @@ app.get("/", (req, res) => {
 app.get("/create", createGetPollController);
 app.get("/polls", allPollsController);
 app.post("/create", createPostPollController);
-app.get('/polls/:id',getPollResultController)
+app.get('/polls/:id',viewPollGetController)
+app.post('/polls/:id',viewPollPostController)
 
 // Database connection
 const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.fp7ypgo.mongodb.net/express-cc-2`;

@@ -30,22 +30,41 @@
                 </div>
                 <div class="list-group-item my-1">
                   <strong>Description</strong>
-                  <p><%=poll.description%></p>
+                  <p><%= poll.description %></p>
                 </div>
                 <div class="list-group-item my-1">
-                    <h5>Result</h5>
+                  <h5>Result</h5>
+                  <%for(const r of result){%>
+                  <div class="list-group-item my-1">
+                    <p><%-r.name%> -----> <strong><%-r.parentage.toFixed(2)%>%</strong></p>
+                  </div>
+                  <%}%>
                 </div>
                 <div class="list-group">
                   <form action="/polls/<%=poll._id%>" method="post">
                     <div class="form-group">
                       <%for(let option of poll.options){%>
                       <div class="custom-control custom-radio">
-                        <input type="radio" name="option" id="<%= option._id%>" value="<%=option._id%>" class="custom-control-input"/>
-                        <label for="<%-option._id%>" class="custom-control-label"><%- option.name%></label>
+                        <input
+                          type="radio"
+                          name="option"
+                          id="<%= option._id%>"
+                          value="<%=option._id%>"
+                          class="custom-control-input"
+                        />
+                        <label
+                          for="<%-option._id%>"
+                          class="custom-control-label"
+                          ><%- option.name%></label
+                        >
                       </div>
                       <%}%>
                     </div>
-                    <input type="submit" value="Submit" class="btn btn-primary my-1">
+                    <input
+                      type="submit"
+                      value="Submit vote"
+                      class="btn btn-primary my-1"
+                    />
                   </form>
                 </div>
               </div>

@@ -32,13 +32,41 @@ exports.allPollsController = async (req, res) => {
   }
 };
 
-exports.getPollResultController = async(req,res) => {
-  const id = req.params.id
-  try{
-    const poll = await Poll.findById(id)
-    console.log(poll)
-    res.render('viewPoll',{poll})
-  }catch (err) {
-    console.log(err)
+exports.viewPollGetController = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const poll = await Poll.findById(id);
+    const options = [...poll.options]
+    const result = []
+    options.forEach(option => {
+      const parentage = (option.vote * 100) / poll.totalVote
+      result.push({
+        ...option._doc,
+        parentage: parentage ? parentage : 0
+      })
+    })
+    res.render("viewPoll", { poll , result});
+  } catch (err) {
+    console.log(err);
   }
-}
+};
+exports.viewPollPostController = async (req, res) => {
+  const selectPollId = req.body.option;
+  const id = req.params.id;
+  try {
+    let poll = await Poll.findById(id);
+    const index = poll.options.findIndex((o) => o.id === selectPollId);
+    let options = [...poll.options];
+    options[index].vote = options[index].vote + 1;
+    let totalVote = poll.totalVote + 1
+    await Poll.findByIdAndUpdate(id, {
+      $set: {
+        totalVote,
+        options,
+      },
+    });
+    res.redirect('/polls/' + id)
+  } catch (err) {
+    console.log(err);
+  }
+};
