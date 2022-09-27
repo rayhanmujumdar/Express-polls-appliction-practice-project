@@ -52,7 +52,7 @@
                       type="text"
                       name="options"
                       id="option1"
-                      placeholder="option 01"
+                      placeholder="option-1"
                       class="form-control"
                     />
                   </div>
@@ -62,7 +62,7 @@
                       type="text"
                       name="options"
                       id="option1"
-                      placeholder="option 02"
+                      placeholder="option-2"
                       class="form-control"
                     />
                   </div>
@@ -90,7 +90,6 @@
       addOption.addEventListener("click", (e) => {
         e.preventDefault();
         const option = createOption();
-        console.log(option);
         options.appendChild(option);
       });
       function createOption() {
