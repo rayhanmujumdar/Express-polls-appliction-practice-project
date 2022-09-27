@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 my-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="list-group">
+                <div class="list-group-item my-1">
+                  <strong>Title</strong>
+                  <h5><%=poll.title%></h5>
+                </div>
+                <div class="list-group-item my-1">
+                  <strong>Description</strong>
+                  <p><%=poll.description%></p>
+                </div>
+                <div class="list-group-item my-1">
+                    <h5>Result</h5>
+                </div>
+                <div class="list-group">
+                  <form action="/polls/<%=poll._id%>" method="post">
+                    <div class="form-group">
+                      <%for(let option of poll.options){%>
+                      <div class="custom-control custom-radio">
+                        <input type="radio" name="option" id="<%= option._id%>" value="<%=option._id%>" class="custom-control-input"/>
+                        <label for="<%-option._id%>" class="custom-control-label"><%- option.name%></label>
+                      </div>
+                      <%}%>
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-primary my-1">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

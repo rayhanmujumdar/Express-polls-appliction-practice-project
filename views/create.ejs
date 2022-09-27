@@ -27,7 +27,7 @@
                 <div class="form-group">
                   <label for="title" class="form-text">Enter Title</label>
                   <input
-                  required
+                    required
                     type="text"
                     name="title"
                     id="title"
@@ -37,13 +37,18 @@
                 </div>
                 <div class="form-group">
                   <label for="description">Enter Description</label>
-                  <textarea name="description" id="" class="form-control" placeholder="Description"></textarea>
+                  <textarea
+                    name="description"
+                    id=""
+                    class="form-control"
+                    placeholder="Description"
+                  ></textarea>
                 </div>
                 <div id="options">
                   <p>Enter Your option</p>
                   <div class="form-group">
                     <input
-                    required
+                      required
                       type="text"
                       name="options"
                       id="option1"
@@ -53,7 +58,7 @@
                   </div>
                   <div class="form-group">
                     <input
-                    required
+                      required
                       type="text"
                       name="options"
                       id="option1"
@@ -85,20 +90,20 @@
       addOption.addEventListener("click", (e) => {
         e.preventDefault();
         const option = createOption();
-        console.log(option)
+        console.log(option);
         options.appendChild(option);
       });
       function createOption() {
         const div = document.createElement("div");
-        div.className = "form-group"
-        const input = document.createElement('input')
+        div.className = "form-group";
+        const input = document.createElement("input");
         input.type = "text";
-        input.name = "options"
-        input.require = true
+        input.name = "options";
+        input.require = true;
         input.classList.add("form-control");
         input.placeholder = "option-" + currentOptionNum++;
-        div.appendChild(input)
-        return div
+        div.appendChild(input);
+        return div;
       }
     </script>
   </body>
